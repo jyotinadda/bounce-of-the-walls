@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			*
+			{
+				padding:0;
+				
+			}
+			canvas
+			{
+				background:#ddd;
+				display:block;
+				margin:0 auto;
+			}
+		</style>
+		<script>
+			function draw()
+			{
+				var ctx=document.getElementById('myContext').getContext('2d');
+				var x=ctx.canvas.width/2;
+				var y=ctx.canvas.height/2;
+				var dx=2;
+				var dy=-2;
+				var ballRadius=10;
+				setInterval(function(){
+					ctx.fillStyle="pink";
+					ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+					
+					ctx.fillStyle="black";
+					ctx.beginPath();
+					ctx.arc(x,y,ballRadius,0,Math.PI*2);
+					ctx.fill();
+					ctx.closePath();
+					if(x==ctx.canvas.width-ballRadius || x<ballRadius)
+					{
+						dx=-dx;
+					}
+					if(y==ctx.canvas.height-ballRadius || y<ballRadius)
+					{
+						dy=-dy;
+					}
+					x=x+dx;
+					y=y+dy;
+					//ctx.fillStyle=#ddd;
+					//ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+				},30);
+			}
+		
+			window.onload=draw;
+		</script>
+	</head>
+	<body>
+		<canvas id="myContext" width="500" height="400"></canvas>
+	</body>
+	
+</html>
